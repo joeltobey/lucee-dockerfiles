@@ -1,0 +1,10 @@
+version: '2'
+services:
+  lucee:
+    container_name: lucee
+    build: .
+    ports:
+      - "81:80"
+      - "8081:8888"
+    environment:
+      LUCEE_JAVA_OPTS: ${LUCEE_JAVA_OPTS}

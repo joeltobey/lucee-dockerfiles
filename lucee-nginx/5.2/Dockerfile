@@ -1,0 +1,31 @@
+FROM joeltobey/lucee:5.2
+
+MAINTAINER Daemonites <hello@daemon.com.au>
+
+# Install nginx and supervisord
+RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62
+RUN echo "deb http://nginx.org/packages/debian/ jessie nginx" >> /etc/apt/sources.list
+RUN apt-get update && \
+	DEBIAN_FRONTEND=noninteractive apt-get install -y \
+		nginx \
+		supervisor && \
+	apt-get clean && \
+	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Copy default nginx config files
+COPY nginx/nginx.conf /etc/nginx/
+COPY nginx/default.conf /etc/nginx/conf.d/
+
+# Copy supervisord.conf
+COPY nginx/supervisord.conf /etc/supervisor/conf.d/
+
+# Provide test page
+RUN mkdir -p /var/www
+COPY index.cfm /var/www/
+ONBUILD RUN rm -rf /var/www/index.cfm
+
+# Expose HTTP and HTTPS ports
+EXPOSE 80 443
+
+# Engage
+CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
