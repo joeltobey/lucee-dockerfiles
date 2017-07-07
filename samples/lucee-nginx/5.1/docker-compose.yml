@@ -1,0 +1,12 @@
+version: '2'
+services:
+  lucee:
+    container_name: lucee-5.1-nginx
+    build: .
+    ports:
+      - "81:80"
+      - "8081:8888"
+    volumes:
+      - .:/var/www
+    environment:
+      LUCEE_JAVA_OPTS: ${LUCEE_JAVA_OPTS}
