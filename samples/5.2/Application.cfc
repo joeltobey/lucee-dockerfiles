@@ -1,32 +1,33 @@
 ﻿component
-	output="false"
+  output="false"
 {
-	// Application properties
-	this.name = "SampleApp";
-	this.sessionManagement = true;
-	this.sessionTimeout = createTimeSpan(0,0,30,0);
+  // Application properties
+  this.name = "SampleApp";
+  this.sessionManagement = true;
+  this.sessionTimeout = createTimeSpan(0,0,30,0);
 
-	// application start
-	public boolean function onApplicationStart(){
-		return true;
-	}
+  // application start
+  public boolean function onApplicationStart() {
+    return true;
+  }
 
-	// application end
-	public void function onApplicationEnd( struct appScope ){
-	}
+  // application end
+  public void function onApplicationEnd( struct appScope ) {}
 
-	// request start
-	public boolean function onRequestStart( string targetPage ){
-		return true;
-	}
+  // request start
+  public boolean function onRequestStart( string targetPage ) {
+    return true;
+  }
 
-	public void function onSessionStart(){
-	}
+  // session start
+  public void function onSessionStart() {}
 
-	public void function onSessionEnd( struct sessionScope, struct appScope ){
-	}
+  // session end
+  public void function onSessionEnd( struct sessionScope, struct appScope ) {}
 
-	public boolean function onMissingTemplate( template ){
-	}
+  // missing template
+  public boolean function onMissingTemplate( template ) {
+    return true;
+  }
 
 }

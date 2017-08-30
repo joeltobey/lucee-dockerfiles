@@ -2,7 +2,7 @@ FROM tomcat:8.5
 
 MAINTAINER Daemonites <hello@daemon.com.au>
 
-ENV LUCEE_JARS_URL http://cdn.lucee.org/rest/update/provider/loader/5.2.1.9
+ENV LUCEE_JARS_URL http://cdn.lucee.org/rest/update/provider/loader/5.2.2.71
 ENV LUCEE_JAVA_OPTS "-Xms256m -Xmx512m"
 ENV TUCKEY_URL_REWRITE_FILTER_URL http://central.maven.org/maven2/org/tuckey/urlrewritefilter/4.0.4/urlrewritefilter-4.0.4.jar
 

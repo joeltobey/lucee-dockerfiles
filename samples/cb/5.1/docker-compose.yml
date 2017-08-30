@@ -1,0 +1,12 @@
+version: '2'
+services:
+  lucee_commandbox:
+    container_name: lucee-5.1-commandbox
+    build: .
+    ports:
+      - "81:80"
+      - "8081:8888"
+    volumes:
+      - .:/var/www/modules_app/mymodule
+    environment:
+      LUCEE_JAVA_OPTS: ${LUCEE_JAVA_OPTS}
