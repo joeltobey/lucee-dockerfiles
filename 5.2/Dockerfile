@@ -1,8 +1,8 @@
-FROM tomcat:8.5
+FROM tomcat:8.5-alpine
 
 MAINTAINER Daemonites <hello@daemon.com.au>
 
-ENV LUCEE_JARS_URL http://cdn.lucee.org/rest/update/provider/loader/5.2.2.71
+ENV LUCEE_JARS_URL http://cdn.lucee.org/rest/update/provider/loader/5.2.5.20
 ENV LUCEE_JAVA_OPTS "-Xms256m -Xmx512m"
 ENV TUCKEY_URL_REWRITE_FILTER_URL http://central.maven.org/maven2/org/tuckey/urlrewritefilter/4.0.4/urlrewritefilter-4.0.4.jar
 
@@ -42,5 +42,5 @@ RUN /usr/local/tomcat/bin/catalina.sh start && \
     /usr/local/tomcat/bin/catalina.sh stop
 
 # Replace the Trusted SSL Certificates packaged with Lucee with those from Debian
-#   ca-certificates package from the OS is the most recent authority
+# ca-certificates package from the OS is the most recent authority
 RUN cp -f /etc/ssl/certs/java/cacerts /opt/lucee/server/lucee-server/context/security/cacerts

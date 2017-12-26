@@ -127,6 +127,17 @@
     -->
     <Engine name="Catalina" defaultHost="localhost">
 
+      <!-- By default, Lucee (as of v4.5) does not configure tomcat for
+           forwarding the user's IP address to Tomcat. This will mean that
+           the CGI.remote_addr value will display as 127.0.0.1 (localhost).
+           To configure this to show the users real IP address, Tomcat needs
+           to be configured to process a header X-Forward-For that Apache
+           sets when proxying the request to Tomcat/Lucee. -->
+
+      <Valve className="org.apache.catalina.valves.RemoteIpValve"
+             remoteIpHeader="X-Forwarded-For"
+             requestAttributesEnabled="true" />
+
       <!--For clustering, please take a look at documentation at:
           /docs/cluster-howto.html  (simple how to)
           /docs/config/cluster.html (reference documentation) -->
