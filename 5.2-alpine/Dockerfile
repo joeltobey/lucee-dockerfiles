@@ -1,4 +1,4 @@
-FROM tomcat:8.5
+FROM tomcat:8.5-alpine
 
 MAINTAINER Daemonites <hello@daemon.com.au>
 
