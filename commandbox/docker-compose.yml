@@ -1,0 +1,7 @@
+version: '3.6'
+services:
+  commandbox-base-test:
+    container_name: commandbox-base-test
+    image: commandbox-base:latest
+    ports:
+      - "8080:8080"
