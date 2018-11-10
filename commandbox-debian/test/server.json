@@ -1,0 +1,13 @@
+{
+    "app":{
+        "sessionCookieSecure":true,
+        "sessionCookieHTTPOnly":true
+    },
+    "web":{
+        "directoryBrowsing":false,
+        "rewrites":{
+            "enable":"true",
+            "config":"/root/build/util/urlrewrite-headless.xml"
+        }
+    }
+}
