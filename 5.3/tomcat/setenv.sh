@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Tomcat memory settings
 # -Xms<size> set initial Java heap size
 # -Xmx<size> set maximum Java heap size
