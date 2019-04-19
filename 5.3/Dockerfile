@@ -2,8 +2,8 @@ FROM tomcat:9-jre8
 
 MAINTAINER Joel Tobey <joeltobey@gmail.com>
 
-ARG LUCEE_VERSION=5.3.1.87-RC
-ARG COMMANDBOX_VERSION=4.4.0
+ARG LUCEE_VERSION=5.3.1.102
+ARG COMMANDBOX_VERSION=4.6.0
 
 ENV HOME /root
 
@@ -22,13 +22,13 @@ WORKDIR $APP_DIR
 
 ENV CATALINA_HOME /usr/local/tomcat
 
-ENV LUCEE_JARS_URL http://release.lucee.org/rest/update/provider/loader/$LUCEE_VERSION
+ENV LUCEE_JARS_URL http://release.lucee.org/rest/update/provider/light/$LUCEE_VERSION
 ENV LUCEE_JAVA_OPTS "-Djava.awt.headless=true -server -Xms256m -Xmx512m"
 
 # Download core JAR, and delete it in one step to avoid committing the installer in a FS layer
 RUN wget -nv $LUCEE_JARS_URL -O $HOME/lucee.jar && \
 	mkdir -p $CATALINA_HOME/lucee && \
-	cp /root/lucee.jar $CATALINA_HOME/lucee/lucee.jar && \
+	cp $HOME/lucee.jar $CATALINA_HOME/lucee/lucee.jar && \
 	rm -rf $HOME/lucee.jar
 
 # Delete the default Tomcat webapps so they aren't deployed at startup
