@@ -1,5 +1,3 @@
-#!/bin/bash
-
 echo "****************************************************************"
 echo "INFO: Rewrite Flag detected, updating configuration..."
 

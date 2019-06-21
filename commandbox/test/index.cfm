@@ -1,34 +1,40 @@
-<cfset system = createobject("java", "java.lang.System")>
-<cfset env = system.getEnv()>
-<cfset headers = GetHttpRequestData().headers>
+<cfif structKeyExists( url, "debug" )>
+	<cfscript>
+		system = createObject( "java", "java.lang.System" );
+		env = system.getenv();
+	</cfscript>
+	<cfheader name="Content-Type" value="application/json"/>
+	<cfswitch expression="#url.debug#">
+		<cfcase value="cgi">
+			<cfset debugOutput = cgi>
+		</cfcase>
 
-<cfoutput>
-<h1>Hello Cruel World!</h1>
+		<cfcase value="server">
+			<cfset debugOutput = server>			
+		</cfcase>
 
-<p>
-	Lucee #server.lucee.version# released #dateformat(server.lucee["release-date"], "dd mmm yyyy")#<br>
-	#server.servlet.name# (java #server.java.version#) running on #server.os.name# (#server.os.version#)<br>
-	Hosted at #headers.host#
-</p>
+		<cfcase value="env">
+			<cfset debugOutput = env>	
+		</cfcase>
 
-
-<h2>Server Internals</h2>
-
-<cfoutput><p>As at #now()#</p></cfoutput>
-
-<h3>Environment Variables</h3>
-<cfdump var="#env#" label="system.getEnv()">
-
-<h3>Cookie Variables</h3>
-<cfdump var="#cookie#" label="Cookie">
-
-<h3>Server Variables</h3>
-<cfdump var="#server#" label="Server">
-
-<h3>CGI Variables</h3>
-<cfdump var="#cgi#" label="CGI">
-
-<h3>HTTP Request Variables</h3>
-<cfdump var="#headers#" label="GetHttpRequestData().headers">
-
-</cfoutput>
+		<cfcase value="all">
+			<cfset debugOutput = { "server":SERVER, "CGI":CGI, "env":env }>	
+		</cfcase>
+		<cfdefaultcase>
+			<cfset debugOutput = { "error":true, "message":"No debug parameter provided. Available parameters are: cgi, server, env, all" }>
+		</cfdefaultcase>
+	</cfswitch>
+	<cfoutput>#serializeJSON( debugOutput )#</cfoutput>
+<cfelse>
+	<body style="background-color: ##efefef; margin-top:100px">
+		<h1>
+			<div style="text-align: center">
+				<img src="CommandBoxLogo300.png" > <br>
+				Is up and Running on Docker!
+			</div>
+		</h1>
+		<p style="text-align: center">
+			If you want to see some debugging information for this instance, click on the debug link: <a href="index.cfm?debug=true">see debugging</a>
+		</p>
+	</body>
+</cfif>

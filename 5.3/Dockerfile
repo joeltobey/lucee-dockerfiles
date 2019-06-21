@@ -22,7 +22,7 @@ WORKDIR $APP_DIR
 
 ENV CATALINA_HOME /usr/local/tomcat
 
-ENV LUCEE_JARS_URL http://release.lucee.org/rest/update/provider/light/$LUCEE_VERSION
+ENV LUCEE_JARS_URL http://release.lucee.org/rest/update/provider/loader/$LUCEE_VERSION
 ENV LUCEE_JAVA_OPTS "-Djava.awt.headless=true -server -Xms256m -Xmx512m"
 
 # Download core JAR, and delete it in one step to avoid committing the installer in a FS layer
@@ -45,6 +45,7 @@ RUN chmod a+x $CATALINA_HOME/bin/setenv.sh
 # Create Lucee configs
 COPY lucee/lucee-server.xml /opt/lucee/server/lucee-server/context/lucee-server.xml
 COPY lucee/lucee-web.xml.cfm /opt/lucee/web/lucee-web.xml.cfm
+COPY lucee/log4j.properties /opt/lucee/web/log4j.properties
 
 # Copy file system
 COPY test/ $APP_DIR/

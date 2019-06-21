@@ -1,5 +1,3 @@
-#!/bin/bash
-
 echo "****************************************************************"
 echo "INFO: Headless startup flag detected, removing admin web interfaces..."
 
