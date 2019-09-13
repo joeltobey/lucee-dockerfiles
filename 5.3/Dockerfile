@@ -2,7 +2,7 @@ FROM tomcat:9-jre8
 
 MAINTAINER Joel Tobey <joeltobey@gmail.com>
 
-ARG LUCEE_VERSION=5.3.2.77
+ARG LUCEE_VERSION=5.3.3.62
 ARG COMMANDBOX_VERSION=4.7.0
 
 ENV HOME /root
