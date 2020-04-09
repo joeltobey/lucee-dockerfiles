@@ -343,6 +343,8 @@ for every argument defined lucee tries to call a matching setter method
 		<rhextension file-name="1v8soc8s1efxq.lex" id="8D7FB0DF-08BB-1589-FE3975678F07DB17" lucee-core-version="5.0.0.252-" name="Compress Tags" release-type="all" start-bundles="false" trial="false" version="1.0.0.2"/>
 		<rhextension file-name="18amu3rvjgk9q.lex" id="6E2CB28F-98FB-4B51-B6BE6C64ADF35473" name="Ajax Extension" release-type="server" start-bundles="true" trial="false" version="1.0.0.3"/>
 	</extensions>
+	<compiler dot-notation-upper-case="false" externalize-string-gte="-1" full-null-support="true" handle-unquoted-attribute-value-as-string="true" suppress-ws-before-arg="true"/>
+	<charset template-charset="UTF-8"/>
 	<jdbc>
 		<driver bundle-name="com.mysql.cj" bundle-version="8.0.15" class="com.mysql.cj.jdbc.Driver" id="mysql" label="MySQL"/>
 		<driver bundle-name="mssqljdbc4" bundle-version="4.0.2206.100" class="com.microsoft.sqlserver.jdbc.SQLServerDriver" id="mssql" label="Microsoft SQL Server (Vendor Microsoft)"/>
