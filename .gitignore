@@ -2,3 +2,7 @@
 .project
 *.iml
 .tmp/
+
+# Mac
+.DS_Store
+*/.DS_Store
