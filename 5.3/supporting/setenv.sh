@@ -7,15 +7,15 @@
 # -XX:MaxPermSize sets the java PermGen size
 
 # Default memory settings if not specified in $LUCEE_JAVA_OPTS
-: ${LUCEE_JAVA_OPTS:="-Xms256m -Xmx512m"}
+: ${LUCEE_JAVA_OPTS:="-Xms64m -Xmx512m"}
 
 # Use /dev/urandom for EGD (http://wiki.apache.org/tomcat/HowTo/FasterStartUp)
-JAVA_OPTS="${LUCEE_JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom";
+CATALINA_OPTS="${LUCEE_JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom";
 
 # additional JVM arguments can be added to the above line as needed, such as
 # custom Garbage Collection arguments.
 
-export JAVA_OPTS;
+export CATALINA_OPTS;
 
 # Add location of Apache Tomcat native library to the library path
 LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu";
