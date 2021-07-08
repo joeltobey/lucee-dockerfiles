@@ -1,9 +1,9 @@
-FROM tomcat:9.0.33-jdk11-adoptopenjdk-openj9
+FROM tomcat:9.0.50-jdk11-openjdk-buster
 
 MAINTAINER Joel Tobey <joeltobey@gmail.com>
 
-ARG LUCEE_VERSION=5.3.5.92
-ARG COMMANDBOX_VERSION=5.0.1
+ARG LUCEE_VERSION=5.3.8.189
+ARG COMMANDBOX_VERSION=5.3.1
 
 ENV HOME /root
 WORKDIR $HOME
@@ -27,6 +27,9 @@ RUN mkdir -p /opt/lucee/server/lucee-server/context/security && \
 	if   [ -e "$JAVA_HOME/jre/lib/security/cacerts" ]; then ln -s "$JAVA_HOME/jre/lib/security/cacerts" -t /opt/lucee/server/lucee-server/context/security/; \
 	elif [ -e "$JAVA_HOME/lib/security/cacerts" ]; then ln -s "$JAVA_HOME/lib/security/cacerts" -t /opt/lucee/server/lucee-server/context/security/; \
 	else echo "Unable to find/symlink cacerts."; exit 1; fi
+
+# Delete the default Tomcat webapps so they aren't deployed at startup
+RUN rm -rf $CATALINA_HOME/webapps/*
 
 # Custom setenv.sh to load Lucee
 # Tomcat memory settings
